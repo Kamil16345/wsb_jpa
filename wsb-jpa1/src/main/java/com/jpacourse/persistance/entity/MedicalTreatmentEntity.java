@@ -18,6 +18,10 @@ public class MedicalTreatmentEntity {
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
+	@ManyToOne
+	@JoinColumn(name = "visit_entity_id")
+	private VisitEntity visitEntity;
+
 	public Long getId() {
 		return id;
 	}
@@ -42,4 +46,11 @@ public class MedicalTreatmentEntity {
 		this.type = type;
 	}
 
+	public VisitEntity getVisitEntity() {
+		return visitEntity;
+	}
+
+	public void setVisitEntity(VisitEntity visitEntity) {
+		this.visitEntity = visitEntity;
+	}
 }
