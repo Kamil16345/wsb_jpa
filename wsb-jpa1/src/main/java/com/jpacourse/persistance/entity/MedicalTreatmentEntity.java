@@ -19,8 +19,8 @@ public class MedicalTreatmentEntity {
 	private TreatmentType type;
 
 	@ManyToOne
-	@JoinColumn(name = "visit_entity_id")
-	private VisitEntity visitEntity;
+	@JoinColumn(name = "visit_id", nullable = false)
+	private VisitEntity visit;
 
 	public Long getId() {
 		return id;
@@ -46,11 +46,11 @@ public class MedicalTreatmentEntity {
 		this.type = type;
 	}
 
-	public VisitEntity getVisitEntity() {
-		return visitEntity;
+	public VisitEntity getVisit() {
+		return visit;
 	}
 
-	public void setVisitEntity(VisitEntity visitEntity) {
-		this.visitEntity = visitEntity;
+	public void setVisit(VisitEntity visit) {
+		this.visit = visit;
 	}
 }

@@ -24,6 +24,7 @@ public class DoctorEntity {
 	@Column(nullable = false)
 	private String telephoneNumber;
 
+	@Column(nullable = false)
 	private String email;
 
 	@Column(nullable = false)
@@ -34,11 +35,8 @@ public class DoctorEntity {
 	private Specialization specialization;
 
 	@OneToOne
-	@JoinColumn(name="address_id")
-	private AddressEntity addressEntity;
-
-	@OneToMany(mappedBy="doctorEntity")
-	private List<VisitEntity> visitEntities;
+	@JoinColumn(name = "address_id")
+	private AddressEntity address;
 
 
 	public Long getId() {
@@ -96,20 +94,12 @@ public class DoctorEntity {
 	public void setSpecialization(Specialization specialization) {
 		this.specialization = specialization;
 	}
-
-	public AddressEntity getAddressEntity() {
-		return addressEntity;
+	public AddressEntity getAddress() {
+		return address;
 	}
 
-	public void setAddressEntity(AddressEntity addressEntity) {
-		this.addressEntity = addressEntity;
+	public void setAddress(AddressEntity address) {
+		this.address = address;
 	}
 
-	public List<VisitEntity> getVisitEntities() {
-		return visitEntities;
-	}
-
-	public void setVisitEntities(List<VisitEntity> visitEntities) {
-		this.visitEntities = visitEntities;
-	}
 }

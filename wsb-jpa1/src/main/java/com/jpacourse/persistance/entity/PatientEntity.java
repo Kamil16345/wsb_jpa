@@ -1,10 +1,13 @@
 package com.jpacourse.persistance.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import com.jpacourse.dto.VisitTO;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "PATIENT")
@@ -32,12 +35,17 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
-	@OneToOne
-	@JoinColumn(name="address_id")
-	private AddressEntity addressEntity;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id", unique = true)
+	private AddressEntity address;
 
-	@OneToMany(mappedBy="patientEntity")
-	private List<VisitEntity> visitEntities;
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SELECT)
+	private List<VisitEntity> visits;
+
+	@Column(nullable = false)
+	private LocalDateTime dateOfJoin;
+
 
 	public Long getId() {
 		return id;
@@ -95,19 +103,27 @@ public class PatientEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public AddressEntity getAddressEntity() {
-		return addressEntity;
+	public AddressEntity getAddress() {
+		return address;
 	}
 
-	public void setAddressEntity(AddressEntity addressEntity) {
-		this.addressEntity = addressEntity;
+	public void setAddress(AddressEntity address) {
+		this.address = address;
 	}
 
-	public List<VisitEntity> getVisitEntities() {
-		return visitEntities;
+	public List<VisitEntity> getVisits() {
+		return visits;
 	}
 
-	public void setVisitEntities(List<VisitEntity> visitEntities) {
-		this.visitEntities = visitEntities;
+	public void setVisits(List<VisitEntity> visits) {
+		this.visits = visits;
+	}
+
+	public LocalDateTime getDateOfJoining() {
+		return dateOfJoin;
+	}
+
+	public void setDateOfJoining(LocalDateTime dateOfJoin) {
+		this.dateOfJoin = dateOfJoin;
 	}
 }
