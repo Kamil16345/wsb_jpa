@@ -1,50 +1,34 @@
-package com.jpacourse.persistance.entity;
+package com.jpacourse.dto;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import com.jpacourse.persistance.entity.AddressEntity;
+import com.jpacourse.persistance.entity.VisitEntity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "PATIENT")
-public class PatientEntity {
+public class PatientTO implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
     private String telephoneNumber;
 
-    @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
     private String patientNumber;
 
-    @Column(nullable = false)
     private LocalDate dateOfBirth;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id", unique = true)
-    private AddressEntity address;
+    private AddressEntity addressEntity;
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
     private List<VisitEntity> visits;
 
-    @Column(nullable = false)
     private LocalDateTime dateOfJoin;
-
 
     public Long getId() {
         return id;
@@ -102,27 +86,27 @@ public class PatientEntity {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public AddressEntity getAddress() {
-        return address;
+    public AddressEntity getAddressEntity() {
+        return addressEntity;
     }
 
-    public void setAddress(AddressEntity address) {
-        this.address = address;
+    public void setAddressEntity(AddressEntity addressEntity) {
+        this.addressEntity = addressEntity;
     }
 
-    public List<VisitEntity> getVisits() {
+    public List<VisitEntity> getVisitEntities() {
         return visits;
     }
 
-    public void setVisits(List<VisitEntity> visits) {
-        this.visits = visits;
+    public void setVisits(List<VisitEntity> visitEntities) {
+        this.visits = visitEntities;
     }
 
     public LocalDateTime getDateOfJoin() {
         return dateOfJoin;
     }
 
-    public void setDateOfJoin(LocalDateTime dateOfJoin) {
-        this.dateOfJoin = dateOfJoin;
+    public void setDateOfJoin(LocalDateTime dateOfJoining) {
+        this.dateOfJoin = dateOfJoining;
     }
 }
