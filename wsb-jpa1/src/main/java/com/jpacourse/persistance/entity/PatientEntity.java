@@ -1,8 +1,6 @@
 package com.jpacourse.persistance.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -39,7 +37,6 @@ public class PatientEntity {
     private AddressEntity address;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
     private List<VisitEntity> visits;
 
     @Column(nullable = false)
