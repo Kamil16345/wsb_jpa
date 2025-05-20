@@ -6,6 +6,7 @@ import com.jpacourse.persistance.entity.PatientEntity;
 import com.jpacourse.persistance.entity.VisitEntity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,5 +49,13 @@ public final class PatientMapper {
         patientEntity.setVisits(patientTo.getVisitEntities());
         patientEntity.setDateOfJoin(patientTo.getDateOfJoin());
         return patientEntity;
+    }
+
+    public static List<PatientTO> mapToTO(final List<PatientEntity> patientEntities) {
+        List<PatientTO> result = new ArrayList<>();
+        patientEntities.forEach(patient ->
+                result.add(mapToTO(patient))
+        );
+        return result;
     }
 }
