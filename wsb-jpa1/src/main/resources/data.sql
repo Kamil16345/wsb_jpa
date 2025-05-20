@@ -1,3 +1,5 @@
+insert into address (id, address_line1, address_line2, city, postal_code)
+values (901, 'xx', 'yy', 'city', '60-400');
 
 INSERT INTO ADDRESS (id, city, address_line1, address_line2, postal_code)
 VALUES (1, 'Warszawa', 'ul. Zielna 45', 'Apt 12', '00-001'),
