@@ -18,6 +18,11 @@ public class AddressEntity {
     private String addressLine2;
 
     private String postalCode;
+    @OneToOne(mappedBy = "address")
+    private PatientEntity patient;
+
+    @OneToOne(mappedBy = "address")
+    private DoctorEntity doctor;
 
     public Long getId() {
         return id;

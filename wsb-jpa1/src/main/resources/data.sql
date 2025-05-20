@@ -1,6 +1,4 @@
--- insert into address (id, address_line1, address_line2, city, postal_code)
--- values (901, 'xx', 'yy', 'city', '60-400');
--- Insert data into ADDRESS table
+
 INSERT INTO ADDRESS (id, city, address_line1, address_line2, postal_code)
 VALUES (1, 'Warszawa', 'ul. Zielna 45', 'Apt 12', '00-001'),
        (2, 'Kraków', 'ul. Floriańska 22', NULL, '31-021'),
@@ -50,3 +48,9 @@ VALUES (1, 'Pomiar ciśnienia krwi', 'RTG', 1),
        (9, 'Szczepienie', 'USG', 5),
        (10, 'Badanie EKG wysiłkowe', 'EKG', 6),
        (11, 'Badanie EEG', 'EKG', 7);
+
+ALTER TABLE doctor ALTER COLUMN id RESTART WITH 6;
+ALTER TABLE patient ALTER COLUMN id RESTART WITH 7;
+ALTER TABLE visit ALTER COLUMN id RESTART WITH 8;
+ALTER TABLE address ALTER COLUMN id RESTART WITH 8;
+ALTER TABLE medical_treatment ALTER COLUMN id RESTART WITH 12;
