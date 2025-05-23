@@ -1,7 +1,9 @@
 package com.jpacourse.service;
 
 import com.jpacourse.dto.PatientTO;
+import com.jpacourse.persistance.entity.PatientEntity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PatientService {
@@ -14,4 +16,8 @@ public interface PatientService {
     PatientTO update(final PatientTO patientTO);
 
     void deleteById(final Long id);
+
+    List<PatientTO> findPatientsWithMoreVisitsThan(int visitsAmount);
+
+    List<PatientTO> findPatientsWhoJoinedOnGivenDate(LocalDate dateOfJoin);
 }

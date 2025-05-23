@@ -58,9 +58,9 @@ public class PatientServiceImpl implements PatientService {
         patientDao.delete(id);
     }
 
-    public List<PatientTO> findByFirstNameAndLastName(String firstName, String lastName) {
-        List<PatientEntity> patientByFirstAndLastName = patientDao.findByFirstNameAndLastName(firstName, lastName);
-        return PatientMapper.mapToTO(patientByFirstAndLastName);
+    public List<PatientTO> findByLastName(String lastName) {
+        List<PatientEntity> patientByLastName = patientDao.findByLastName(lastName);
+        return PatientMapper.mapToTO(patientByLastName);
     }
 
     public List<PatientTO> findByEmail(String email) {
@@ -86,5 +86,15 @@ public class PatientServiceImpl implements PatientService {
     public List<PatientTO> findPatientsWithUpcomingVisits(Long patientId) {
         List<PatientEntity> patientByVisitDate = patientDao.findPatientsWithUpcomingVisits(patientId);
         return PatientMapper.mapToTO(patientByVisitDate);
+    }
+
+    public List<PatientTO> findPatientsWithMoreVisitsThan(int visitsAmount){
+        List<PatientEntity> patientsWithMoreVisitsThan = patientDao.findPatientsWithMoreVisitsThan(visitsAmount);
+        return PatientMapper.mapToTO(patientsWithMoreVisitsThan);
+    }
+
+    public List<PatientTO> findPatientsWhoJoinedOnGivenDate(LocalDate dateOfJoin){
+        List<PatientEntity> patientsWhoJoinedOnGivenDate = patientDao.findPatientsWhoJoinedOnGivenDate(dateOfJoin);
+        return PatientMapper.mapToTO(patientsWhoJoinedOnGivenDate);
     }
 }

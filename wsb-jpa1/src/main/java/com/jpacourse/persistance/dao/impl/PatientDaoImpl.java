@@ -17,10 +17,9 @@ import java.util.List;
 public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements PatientDao {
 
     @Override
-    public List<PatientEntity> findByFirstNameAndLastName(String firstName, String lastName) {
+    public List<PatientEntity> findByLastName(String lastName) {
         return entityManager
-                .createQuery("SELECT p FROM PatientEntity p WHERE p.firstName = :firstName and p.lastName = :lastName", PatientEntity.class)
-                .setParameter("firstName", firstName)
+                .createQuery("SELECT p FROM PatientEntity p WHERE p.lastName = :lastName", PatientEntity.class)
                 .setParameter("lastName", lastName)
                 .getResultList();
     }
@@ -64,6 +63,26 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
         return entityManager
                 .createQuery("SELECT v FROM VisitEntity v WHERE v.patient.id = :patientId", PatientEntity.class)
                 .setParameter("patientId", patientId)
+                .getResultList();
+    }
+
+    @Override
+    public List<PatientEntity> findPatientsWithMoreVisitsThan(int visitsAmount) {
+        return entityManager
+                .createQuery(
+                        "SELECT p FROM PatientEntity p " +
+                                "JOIN VisitEntity v ON v.patient = p " +
+                                "GROUP BY p.id " +
+                                "HAVING COUNT(v) > :visitsAmount", PatientEntity.class)
+                .setParameter("visitsAmount", visitsAmount)
+                .getResultList();
+    }
+
+    @Override
+    public List<PatientEntity> findPatientsWhoJoinedOnGivenDate(LocalDate dateOfJoin) {
+        return entityManager
+                .createQuery("SELECT p FROM PatientEntity p WHERE p.dateOfJoin IN :dateOfJoin", PatientEntity.class)
+                .setParameter("dateOfJoin", dateOfJoin)
                 .getResultList();
     }
 

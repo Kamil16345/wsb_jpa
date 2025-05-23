@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface PatientDao extends Dao<PatientEntity, Long> {
-    List<PatientEntity> findByFirstNameAndLastName(String firstName, String lastname);
+    List<PatientEntity> findByLastName(String lastname);
 
     List<PatientEntity> findByEmail(String email);
 
@@ -18,6 +18,10 @@ public interface PatientDao extends Dao<PatientEntity, Long> {
     long countEntities();
 
     List<PatientEntity> findPatientsWithUpcomingVisits(Long patientId);
+
+    List<PatientEntity> findPatientsWithMoreVisitsThan(int visitsAmount);
+
+    List<PatientEntity> findPatientsWhoJoinedOnGivenDate(LocalDate dateOfJoin);
 
     PatientEntity createVisitForPatient(Long patientId, Long doctorId, LocalDateTime visitDate, String visitDescription);
 }
