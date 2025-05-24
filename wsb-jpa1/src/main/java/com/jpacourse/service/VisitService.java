@@ -13,4 +13,9 @@ public interface VisitService {
 
     List<VisitTO> findVisitsByPatientId(final Long patientId);
 
+    VisitTO save(VisitTO visitTO);
+
+    VisitTO update(VisitTO visitTO);
+
+    void deleteById(Long id);
 }

@@ -5,4 +5,10 @@ import com.jpacourse.dto.AddressTO;
 public interface AddressService
 {
     AddressTO findById(final Long id);
+
+    void deleteById(Long id);
+
+    AddressTO save(AddressTO addressTO);
+
+    AddressTO update(AddressTO addressTO);
 }

@@ -24,4 +24,14 @@ public class MedicalTreatmentMapper {
 
         return medicalTreatmentList;
     }
+    public static List<MedicalTreatmentEntity> mapToEntity(List<MedicalTreatmentTO> medicalTreatmentTO) {
+        List<MedicalTreatmentEntity> medicalTreatmentEntityList = new ArrayList<>();
+        for(MedicalTreatmentTO medicalTreatment: medicalTreatmentTO) {
+            MedicalTreatmentEntity medicalTreatmentEntity = new MedicalTreatmentEntity();
+            medicalTreatmentEntity.setType(medicalTreatment.getTreatmentType());
+            medicalTreatmentEntityList.add(medicalTreatmentEntity);
+        }
+
+        return medicalTreatmentEntityList;
+    }
 }

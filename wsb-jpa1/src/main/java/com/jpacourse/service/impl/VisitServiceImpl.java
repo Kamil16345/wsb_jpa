@@ -41,4 +41,20 @@ public class VisitServiceImpl implements VisitService {
                 .map(VisitMapper::mapToTO)
                 .collect(Collectors.toList());
     }
+
+    public void deleteById(Long id){
+        visitDao.delete(id);
+    }
+
+    @Override
+    public VisitTO save(VisitTO visitTO) {
+        VisitEntity savedVisit = visitDao.save(VisitMapper.mapTo(visitTO));
+        return VisitMapper.mapToTO(savedVisit);
+    }
+
+    @Override
+    public VisitTO update(VisitTO visitTO) {
+        VisitEntity updatedVisit = visitDao.update(VisitMapper.mapTo(visitTO));
+        return VisitMapper.mapToTO(updatedVisit);
+    }
 }

@@ -12,13 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class AddressServiceImpl implements AddressService
-{
+public class AddressServiceImpl implements AddressService {
     private final AddressDao addressDao;
 
     @Autowired
-    public AddressServiceImpl(AddressDao pAddressDao)
-    {
+    public AddressServiceImpl(AddressDao pAddressDao) {
         addressDao = pAddressDao;
     }
 
@@ -27,4 +25,22 @@ public class AddressServiceImpl implements AddressService
         final AddressEntity entity = addressDao.findOne(id);
         return AddressMapper.mapToTO(entity);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        addressDao.delete(id);
+    }
+
+    @Override
+    public AddressTO save(AddressTO addressTO) {
+        AddressEntity savedAddress = addressDao.save(AddressMapper.mapToEntity(addressTO));
+        return AddressMapper.mapToTO(savedAddress);
+    }
+
+    @Override
+    public AddressTO update(AddressTO addressTO) {
+        AddressEntity updatedUser = addressDao.update(AddressMapper.mapToEntity(addressTO));
+        return AddressMapper.mapToTO(updatedUser);
+    }
+
 }

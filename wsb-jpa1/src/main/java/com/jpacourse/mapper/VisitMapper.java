@@ -15,4 +15,25 @@ public final class VisitMapper {
 
         return visit;
     }
+    public static VisitEntity mapToEntity(final VisitTO visitTO){
+        VisitEntity visitEntity = new VisitEntity();
+        if(visitTO == null){
+            return visitEntity;
+        }
+        visitEntity.setTime(visitEntity.getTime());
+        visitEntity.setDoctor(DoctorMapper.mapToEntity(visitTO.getDoctor()));
+        visitEntity.setMedicalTreatments(MedicalTreatmentMapper.mapToEntity(visitTO.getMedicalTreatments()));
+
+        return visitEntity;
+    }
+
+    public static VisitEntity mapTo(VisitTO visitTO) {
+        if (visitTO == null) {
+            return null;
+        }
+        VisitEntity visitEntity = new VisitEntity();
+        visitEntity.setTime(visitTO.getTime());
+        visitEntity.setDoctor(DoctorMapper.mapToEntity(visitTO.getDoctor()));
+        return visitEntity;
+    }
 }

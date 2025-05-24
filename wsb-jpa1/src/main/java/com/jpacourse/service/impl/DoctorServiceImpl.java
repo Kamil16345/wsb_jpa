@@ -32,4 +32,21 @@ public class DoctorServiceImpl implements DoctorService {
     public List<DoctorEntity> findAll() {
         return doctorDao.findAll();
     }
+
+    @Override
+    public void deleteById(Long id) {
+        doctorDao.delete(id);
+    }
+
+    @Override
+    public DoctorTO update(DoctorTO doctorTO) {
+        DoctorEntity updatedDoctor = doctorDao.update(DoctorMapper.mapToEntity(doctorTO));
+        return DoctorMapper.mapToTO(updatedDoctor);
+    }
+
+    @Override
+    public DoctorTO save(DoctorTO doctorTO) {
+        DoctorEntity savedDoctor = doctorDao.save(DoctorMapper.mapToEntity(doctorTO));
+        return DoctorMapper.mapToTO(savedDoctor);
+    }
 }

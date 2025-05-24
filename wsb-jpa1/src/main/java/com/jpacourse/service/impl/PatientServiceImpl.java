@@ -73,14 +73,9 @@ public class PatientServiceImpl implements PatientService {
         return PatientMapper.mapToTO(patientByVisitDate);
     }
 
-    //TODO: sprawdź czy potrzebne.
     public List<PatientTO> findVisitsWithDoctor(Long patientId, Long doctorId) {
         List<PatientEntity> visitsWithDoctor = patientDao.findVisitsWithDoctor(patientId, doctorId);
         return PatientMapper.mapToTO(visitsWithDoctor);
-    }
-
-    public long countEntities() {
-        return patientDao.countEntities();
     }
 
     public List<PatientTO> findPatientsWithUpcomingVisits(Long patientId) {
