@@ -25,7 +25,7 @@ public class DoctorTO implements Serializable {
 
     private AddressEntity address;
 
-    private List<VisitEntity> visits;
+    private List<VisitTO> visits;
 
     public Long getId() {
         return id;
@@ -90,11 +90,11 @@ public class DoctorTO implements Serializable {
         this.address = address;
     }
 
-    public List<VisitEntity> getVisits() {
+    public List<VisitTO> getVisits() {
         return visits;
     }
 
-    public void setVisits(List<VisitEntity> visits) {
+    public void setVisits(List<VisitTO> visits) {
         this.visits = visits;
     }
 }

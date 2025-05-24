@@ -2,6 +2,7 @@ package com.jpacourse.mapper;
 
 
 import com.jpacourse.dto.PatientTO;
+import com.jpacourse.dto.VisitTO;
 import com.jpacourse.persistance.entity.PatientEntity;
 import com.jpacourse.persistance.entity.VisitEntity;
 
@@ -25,8 +26,9 @@ public final class PatientMapper {
         patientTo.setPatientNumber(patientEntity.getPatientNumber());
         patientTo.setDateOfBirth(patientEntity.getDateOfBirth());
         patientTo.setAddressEntity(patientEntity.getAddress());
-        List<VisitEntity> pastVisits = patientEntity.getVisits().stream()
+        List<VisitTO> pastVisits = patientEntity.getVisits().stream()
                 .filter(visit -> visit.getTime().isBefore(LocalDateTime.now()))
+                .map(VisitMapper::mapToTO)
                 .collect(Collectors.toList());
         patientTo.setVisits(pastVisits);
         patientTo.setDateOfJoin(patientEntity.getDateOfJoin());
@@ -37,6 +39,9 @@ public final class PatientMapper {
         if (patientTo == null) {
             return null;
         }
+        List<VisitEntity> visitEntities = patientTo.getVisitEntities().stream()
+                .map(VisitMapper::mapToEntity)
+                .toList();
         final PatientEntity patientEntity = new PatientEntity();
         patientEntity.setId(patientTo.getId());
         patientEntity.setFirstName(patientTo.getFirstName());
@@ -46,7 +51,7 @@ public final class PatientMapper {
         patientEntity.setPatientNumber(patientTo.getPatientNumber());
         patientEntity.setDateOfBirth(patientTo.getDateOfBirth());
         patientEntity.setAddress(patientTo.getAddressEntity());
-        patientEntity.setVisits(patientTo.getVisitEntities());
+        patientEntity.setVisits(visitEntities);
         patientEntity.setDateOfJoin(patientTo.getDateOfJoin());
         return patientEntity;
     }

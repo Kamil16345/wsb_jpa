@@ -26,7 +26,7 @@ public class PatientTO implements Serializable {
 
     private AddressEntity addressEntity;
 
-    private List<VisitEntity> visits;
+    private List<VisitTO> visits;
 
     private LocalDateTime dateOfJoin;
 
@@ -94,11 +94,11 @@ public class PatientTO implements Serializable {
         this.addressEntity = addressEntity;
     }
 
-    public List<VisitEntity> getVisitEntities() {
+    public List<VisitTO> getVisitEntities() {
         return visits;
     }
 
-    public void setVisits(List<VisitEntity> visitEntities) {
+    public void setVisits(List<VisitTO> visitEntities) {
         this.visits = visitEntities;
     }
 
