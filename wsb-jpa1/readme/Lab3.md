@@ -27,3 +27,10 @@ Nastepnie zmien adnotacje na
 i powtorz test i obserwacje. Wnioski zapisz na dole tego pliku i skomituj.
 
 Do wybranej encji dodaj wersjonowanie, oraz napisz test (w DAO) sprawdzajacy rownolegla modyfikacje (OptimisticLock)
+
+### Wnioski z zastowoania FetchMode.SELECT oraz FetchMode.JOIN:
+Podczas wykonania testu z FetchMode.SELECT zostało wywołanych więcej zapytań SELECT do bazy danych (14), niż podczas uzycia FetchMode.JOIN (8)  
+FetchMode.SELECT wykonuje oddzielne zapytanie SQL dla każdej encji, podczas gdy JOIN używa JOINów do pobrania głównej encji i powiązanych kolekcji w jednym zapytaniu.  
+Obydwie opcje mają swoje wady i zalety. Np. FetchMode.SELECT może prowadzić do problemu N+1 zapytań,  
+natomiast JOIN - Może być nieefektywne przy dużych kolekcjach (duplikacja danych głównej encji).  
+Jest ono jednak wydajniejze przy mniejszych kolekcjach (wykonuje jedno zapytanie zamiast wielu).
