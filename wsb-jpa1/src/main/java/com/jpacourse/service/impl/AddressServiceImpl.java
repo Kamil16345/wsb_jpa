@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -18,6 +20,13 @@ public class AddressServiceImpl implements AddressService {
     @Autowired
     public AddressServiceImpl(AddressDao pAddressDao) {
         addressDao = pAddressDao;
+    }
+
+    @Override
+    public List<AddressTO> findAll() {
+        return addressDao.findAll().stream()
+                .map(AddressMapper::mapToTO)
+                .toList();
     }
 
     @Override

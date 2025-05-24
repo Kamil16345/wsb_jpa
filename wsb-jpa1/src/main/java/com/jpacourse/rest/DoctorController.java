@@ -1,5 +1,6 @@
 package com.jpacourse.rest;
 
+import com.jpacourse.dto.AddressTO;
 import com.jpacourse.dto.DoctorTO;
 import com.jpacourse.persistance.entity.DoctorEntity;
 import com.jpacourse.rest.exception.EntityNotFoundException;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/doctors")
+@RequestMapping("api/v1/doctor")
 public class DoctorController {
 
     private final DoctorService doctorService;
@@ -31,7 +32,7 @@ public class DoctorController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<DoctorEntity> findAll() {
+    public List<DoctorTO> findAll() {
         return doctorService.findAll();
     }
 

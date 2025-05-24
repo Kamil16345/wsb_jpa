@@ -29,8 +29,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<DoctorEntity> findAll() {
-        return doctorDao.findAll();
+    public List<DoctorTO> findAll() {
+        return doctorDao.findAll().stream()
+                .map(DoctorMapper::mapToTO)
+                .toList();
     }
 
     @Override

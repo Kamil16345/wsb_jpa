@@ -34,6 +34,7 @@ public final class VisitMapper {
         VisitEntity visitEntity = new VisitEntity();
         visitEntity.setTime(visitTO.getTime());
         visitEntity.setDoctor(DoctorMapper.mapToEntity(visitTO.getDoctor()));
+        visitEntity.setMedicalTreatments(MedicalTreatmentMapper.mapToEntity(visitTO.getMedicalTreatments()));
         return visitEntity;
     }
 }

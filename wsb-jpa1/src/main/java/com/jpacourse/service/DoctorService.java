@@ -9,7 +9,7 @@ public interface DoctorService {
 
     DoctorTO findById(final Long id);
 
-    List<DoctorEntity> findAll();
+    List<DoctorTO> findAll();
 
     void deleteById(Long id);
 
