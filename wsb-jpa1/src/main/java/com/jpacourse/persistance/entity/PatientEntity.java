@@ -39,11 +39,14 @@ public class PatientEntity {
     private AddressEntity address;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
+    @Fetch(FetchMode.JOIN)
     private List<VisitEntity> visits;
 
     @Column(nullable = false)
     private LocalDateTime dateOfJoin;
+
+    @Version
+    private Long version;
 
 
     public Long getId() {
@@ -118,11 +121,19 @@ public class PatientEntity {
         this.visits = visits;
     }
 
-    public LocalDateTime getDateOfJoining() {
+    public LocalDateTime getDateOfJoin() {
         return dateOfJoin;
     }
 
-    public void setDateOfJoining(LocalDateTime dateOfJoin) {
+    public void setDateOfJoin(LocalDateTime dateOfJoin) {
         this.dateOfJoin = dateOfJoin;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }

@@ -28,7 +28,7 @@ public class VisitEntity {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "VISIT_ID")
-    private List<MedicalTreatmentEntity> treatments;
+    private List<MedicalTreatmentEntity> medicalTreatments;
 
     public Long getId() {
         return id;
@@ -70,11 +70,11 @@ public class VisitEntity {
         this.patient = patient;
     }
 
-    public List<MedicalTreatmentEntity> getTreatments() {
-        return treatments;
+    public List<MedicalTreatmentEntity> getMedicalTreatments() {
+        return medicalTreatments;
     }
 
-    public void setTreatments(List<MedicalTreatmentEntity> treatments) {
-        this.treatments = treatments;
+    public void setMedicalTreatments(List<MedicalTreatmentEntity> medicalTreatments) {
+        this.medicalTreatments = medicalTreatments;
     }
 }
