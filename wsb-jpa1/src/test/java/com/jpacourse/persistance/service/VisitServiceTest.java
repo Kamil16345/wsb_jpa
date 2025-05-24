@@ -77,7 +77,7 @@ public class VisitServiceTest {
         visitDao.save(visit3);
 
         //when
-        patientDao.findAll()
+        patientDao.findAll();
         List<VisitTO> visits = visitService.findVisitsByPatientId(testPatient1.getId());
 
         //then

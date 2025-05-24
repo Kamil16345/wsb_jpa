@@ -45,6 +45,9 @@ public class PatientEntity {
     @Column(nullable = false)
     private LocalDateTime dateOfJoin;
 
+    @Version
+    private Long version;
+
 
     public Long getId() {
         return id;
@@ -124,5 +127,13 @@ public class PatientEntity {
 
     public void setDateOfJoin(LocalDateTime dateOfJoin) {
         this.dateOfJoin = dateOfJoin;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }
