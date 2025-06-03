@@ -47,8 +47,8 @@ public class TestVisitBuilder {
         return new TestVisitBuilder()
                 .withDescription("Badanie kontrolne")
                 .withTime(LocalDateTime.now().plusDays(7))
-//                .withDoctor(TestDoctorBuilder.defaultDoctor().build())
-//                .withPatient(TestPatientBuilder.defaultPatient().build())
+                .withDoctor(TestDoctorBuilder.defaultDoctor().build())
+                .withPatient(TestPatientBuilder.defaultPatient().build())
                 .withMedicalTreatments(new ArrayList<>());
     }
 }

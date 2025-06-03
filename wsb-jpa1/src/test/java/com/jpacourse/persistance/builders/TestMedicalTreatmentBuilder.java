@@ -6,10 +6,10 @@ import com.jpacourse.persistance.enums.TreatmentType;
 public class TestMedicalTreatmentBuilder {
     private MedicalTreatmentEntity treatment = new MedicalTreatmentEntity();
 
-//    public TestMedicalTreatmentBuilder withId(Long id) {
-//        treatment.setId(id);
-//        return this;
-//    }
+    public TestMedicalTreatmentBuilder withId(Long id) {
+        treatment.setId(id);
+        return this;
+    }
 
     public TestMedicalTreatmentBuilder withTreatmentType(TreatmentType treatmentType) {
         treatment.setType(treatmentType);
